@@ -8,20 +8,24 @@ class ExpectedFailureTestCase: XCTestCase {
     private var failureTestRun: ExpectedFailureTestRun {
         return testRun as! ExpectedFailureTestRun
     }
-    
-    private var lastFailure: Failure {
-        return failureTestRun.lastFailure!
-    }
 
     func assertFailure(
         hadMessage message: String,
         file: StaticString = #file, line: UInt = #line
     ) {
+        guard let failure = failureTestRun.lastFailure else {
+            return XCTFail(
+                """
+                __force
+                Expected a failure but none happened.
+                """
+            )
+        }
         XCTAssertTrue(
-            lastFailure.message.hasSuffix(message),
+            failure.message.hasSuffix(message),
             """
             __force
-            Expected "\(message)" to suffix "\(lastFailure.message)"
+            Expected "\(message)" to suffix "\(failure.message)"
             """,
             file: file, line: line
         )

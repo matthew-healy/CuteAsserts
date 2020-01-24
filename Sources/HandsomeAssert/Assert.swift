@@ -42,15 +42,16 @@ extension Assert where SubjectType: Equatable {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        func check(lhs: SubjectType, rhs: SubjectType) {
-            XCTAssertEqual(
-                lhs, rhs,
-                message,
-                file: file, line: line
-            )
+        let subjectOnLhs = subject == other
+        let subjectOnRhs = other == subject
+        guard subjectOnLhs == subjectOnRhs else {
+            return XCTFail("Equality is not symmetrical for type \(SubjectType.self).")
         }
-        check(lhs: subject, rhs: other)
-        check(lhs: other, rhs: subject)
+        XCTAssertEqual(
+            subject, other,
+            message,
+            file: file, line: line
+        )
     }
 
     public func isNotEqual(
@@ -59,10 +60,15 @@ extension Assert where SubjectType: Equatable {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        func check(lhs: SubjectType, rhs: SubjectType) {
-            XCTAssertNotEqual(lhs, rhs, message, file: file, line: line)
+        let subjectOnLhs = subject != other
+        let subjectOnRhs = other != subject
+        guard subjectOnLhs == subjectOnRhs else {
+            return XCTFail("Inequality is not symmetrical for type \(SubjectType.self).")
         }
-        check(lhs: subject, rhs: other)
-        check(lhs: other, rhs: subject)
+        XCTAssertNotEqual(
+            subject, other,
+            message,
+            file: file, line: line
+        )
     }
 }

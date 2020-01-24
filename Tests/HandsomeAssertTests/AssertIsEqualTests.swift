@@ -29,7 +29,6 @@ final class AssertEqualityFailureTests: ExpectedFailureTestCase {
     }
 
     func test_customEquatableTypesCanBeNonEqual() {
-        struct CustomType: Equatable { let id: Int }
         Assert(CustomType(id: 0)).isEqual(to: CustomType(id: -1))
     }
 
@@ -40,12 +39,14 @@ final class AssertEqualityFailureTests: ExpectedFailureTestCase {
         }
     }
 
-    func test_assertTypeWithAsymmetricEqualityIsEqual_fails() {
+    func test_assertTypeWithAsymmetricEqualityIsEqual_failsWithNotSymmetricalError() {
         Assert(Asymmetric(id: 1)).isEqual(to: Asymmetric(id: -1))
+        assertFailure(
+            hadMessage: "Equality is not symmetrical for type Asymmetric."
+        )
     }
 
     func test_assertSameCustomTypeIsNotEqual_fails() {
-        struct CustomType: Equatable { let id: Int }
         Assert(CustomType(id: 0)).isNotEqual(to: CustomType(id: 0))
     }
 
@@ -56,8 +57,11 @@ final class AssertEqualityFailureTests: ExpectedFailureTestCase {
         }
     }
 
-    func test_assertTypeWithAsymmetricEqualityNotEqual_fails() {
-        Assert(Asymmetric(id: 5)).isNotEqual(to: Asymmetric(id: 5))
+    func test_assertTypeWithAsymmetricEqualityIsNotEqual_failsWithNotSymmetricalError() {
+        Assert(Asymmetric(id: 0)).isNotEqual(to: Asymmetric(id: 1))
+        assertFailure(
+            hadMessage: "Inequality is not symmetrical for type Asymmetric."
+        )
     }
 }
 
