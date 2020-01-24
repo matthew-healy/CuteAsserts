@@ -1,7 +1,7 @@
 import XCTest
 import HandsomeAssert
 
-final class AssertBooleanSuccessTests: XCTestCase {
+final class AssertBoolSuccesses: XCTestCase {
     func test_assertTrueIsTrue_passes() {
         Assert(true).isTrue()
     }
@@ -11,7 +11,7 @@ final class AssertBooleanSuccessTests: XCTestCase {
     }
 }
 
-final class AssertBooleanFailureTests: ExpectedFailureTestCase {
+final class AssertBoolFailures: ExpectedFailureTestCase {
     func test_assertFalseIsTrue_fails() {
         Assert(false).isTrue()
     }

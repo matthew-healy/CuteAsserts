@@ -3,7 +3,7 @@ import HandsomeAssert
 
 // MARK: Expected successes
 
-final class AssertEqualitySuccessTests: XCTestCase {
+final class AssertEquatableSuccesses: XCTestCase {
     func test_assertTrueAndTrueAreEqual_succeeds() {
         Assert(true).isEqual(to: true)
     }
@@ -23,7 +23,7 @@ final class AssertEqualitySuccessTests: XCTestCase {
 
 // MARK: Expected failures
 
-final class AssertEqualityFailureTests: ExpectedFailureTestCase {
+final class AssertEquatableFailures: ExpectedFailureTestCase {
     func test_assert1And3AreEqual_fails() {
         Assert(1).isEqual(to: 3)
     }
@@ -65,7 +65,7 @@ final class AssertEqualityFailureTests: ExpectedFailureTestCase {
     }
 }
 
-// MARK: Test data types
+// MARK: Private test data types
 
 private struct CustomType: Equatable {
     let id: Int
