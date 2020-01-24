@@ -42,10 +42,10 @@ extension Assert where SubjectType: Equatable {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let subjectOnLhs = subject == other
-        let subjectOnRhs = other == subject
-        guard subjectOnLhs == subjectOnRhs else {
-            return XCTFail("Equality is not symmetrical for type \(SubjectType.self).")
+        guard isSymmetric(==, values: (subject, other)) else {
+            return XCTFail(
+                "Equality is not symmetrical for type \(SubjectType.self)."
+            )
         }
         XCTAssertEqual(
             subject, other,
@@ -60,15 +60,22 @@ extension Assert where SubjectType: Equatable {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let subjectOnLhs = subject != other
-        let subjectOnRhs = other != subject
-        guard subjectOnLhs == subjectOnRhs else {
-            return XCTFail("Inequality is not symmetrical for type \(SubjectType.self).")
+        guard isSymmetric(!=, values: (subject, other)) else {
+            return XCTFail(
+                "Inequality is not symmetrical for type \(SubjectType.self)."
+            )
         }
         XCTAssertNotEqual(
             subject, other,
             message,
             file: file, line: line
         )
+    }
+
+    private func isSymmetric(
+        _ op: (SubjectType, SubjectType) -> Bool,
+        values: (SubjectType, SubjectType)
+    ) -> Bool {
+        op(values.0, values.1) == op(values.1, values.0)
     }
 }
