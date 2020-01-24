@@ -48,4 +48,17 @@ extension Assert where SubjectType: Equatable {
             file: file, line: line
         )
     }
+
+    public func isNotEqual(
+        to other: SubjectType,
+        _ message: String = "",
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertNotEqual(
+            subject, other,
+            message,
+            file: file, line: line
+        )
+    }
 }
