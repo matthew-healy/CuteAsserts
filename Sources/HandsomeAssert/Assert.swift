@@ -30,4 +30,17 @@ public struct Assert {
             file: file, line: line
         )
     }
+
+    public func isEqual(
+        to other: Bool,
+        _ message: String = "",
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(
+            subject, other,
+            message,
+            file: file, line: line
+        )
+    }
 }

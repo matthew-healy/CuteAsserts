@@ -9,8 +9,22 @@ class ExpectedFailureTestCase: XCTestCase {
         return testRun as! ExpectedFailureTestRun
     }
     
-    var lastFailure: Failure {
+    private var lastFailure: Failure {
         return failureTestRun.lastFailure!
+    }
+
+    func assertFailure(
+        hadMessage message: String,
+        file: StaticString = #file, line: UInt = #line
+    ) {
+        XCTAssertTrue(
+            lastFailure.message.hasSuffix(message),
+            """
+            __force
+            Expected "\(message)" to suffix "\(lastFailure.message)"
+            """,
+            file: file, line: line
+        )
     }
 }
 

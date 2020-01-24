@@ -33,18 +33,4 @@ final class AssertBooleanFailureTests: ExpectedFailureTestCase {
             assertFailure(hadMessage: message)
         }
     }
-    
-    private func assertFailure(
-        hadMessage message: String,
-        file: StaticString = #file, line: UInt = #line
-    ) {
-        XCTAssertTrue(
-            lastFailure.message.hasSuffix(message),
-            """
-            __force
-            Expected "\(message)" to suffix "\(lastFailure.message)"
-            """,
-            file: file, line: line
-        )
-    }
 }
