@@ -43,7 +43,8 @@ final class AssertBooleanFailureTests: ExpectedFailureTestCase {
             """
             __force
             Expected "\(message)" to suffix "\(lastFailure.message)"
-            """
+            """,
+            file: file, line: line
         )
     }
 }
