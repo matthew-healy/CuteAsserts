@@ -1,11 +1,14 @@
 import XCTest
 
-public struct Assert {
-    private let subject: Bool
+public struct Assert<SubjectType> {
+    private let subject: SubjectType
     
-    public init(_ subject: Bool) {
+    public init(_ subject: SubjectType) {
         self.subject = subject
     }
+}
+
+extension Assert where SubjectType == Bool {
     
     public func isTrue(
         _ message: String = "",
@@ -30,9 +33,11 @@ public struct Assert {
             file: file, line: line
         )
     }
+}
 
+extension Assert where SubjectType: Equatable {
     public func isEqual(
-        to other: Bool,
+        to other: SubjectType,
         _ message: String = "",
         file: StaticString = #file,
         line: UInt = #line
