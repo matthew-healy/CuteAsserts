@@ -7,6 +7,10 @@ extension Assert where SubjectType: Equatable {
         file: StaticString = #file,
         line: UInt = #line
     ) {
+        guard let subject = subject else {
+            // TODO: Add a better message
+            return XCTFail()
+        }
         guard isSymmetric(==, values: (subject, other)) else {
             return XCTFail(
                 "Equality is not symmetrical for type \(SubjectType.self)."
@@ -25,6 +29,10 @@ extension Assert where SubjectType: Equatable {
         file: StaticString = #file,
         line: UInt = #line
     ) {
+        guard let subject = subject else {
+            // TODO: Add a better message
+            return XCTFail()
+        }
         guard isSymmetric(!=, values: (subject, other)) else {
             return XCTFail(
                 "Inequality is not symmetrical for type \(SubjectType.self)."
