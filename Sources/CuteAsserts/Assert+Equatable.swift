@@ -19,7 +19,7 @@ extension Assert where SubjectType: Equatable {
         )
     }
 
-    public func isNotEqual(
+    public func notEqual(
         to other: SubjectType,
         _ message: String = "",
         file: StaticString = #file,

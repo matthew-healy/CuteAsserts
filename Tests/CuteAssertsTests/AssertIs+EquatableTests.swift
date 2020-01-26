@@ -17,7 +17,7 @@ final class AssertEquatableSuccesses: XCTestCase {
     }
 
     func test_assertAbcAndDefAreNotEqual_succeeds() {
-        Assert("Abc").isNotEqual(to: "Def")
+        Assert("Abc").notEqual(to: "Def")
     }
 }
 
@@ -47,18 +47,18 @@ final class AssertEquatableFailures: ExpectedFailureTestCase {
     }
 
     func test_assertSameCustomTypeIsNotEqual_fails() {
-        Assert(CustomType(id: 0)).isNotEqual(to: CustomType(id: 0))
+        Assert(CustomType(id: 0)).notEqual(to: CustomType(id: 0))
     }
 
     func test_assertFalseAndFalseAreNotEqual_includesFailureMessage() {
         for message in ["wat", "wai"] {
-            Assert(false).isNotEqual(to: false, message)
+            Assert(false).notEqual(to: false, message)
             assertFailure(hadMessage: message)
         }
     }
 
     func test_assertTypeWithAsymmetricEqualityIsNotEqual_failsWithNotSymmetricalError() {
-        Assert(Asymmetric(id: 0)).isNotEqual(to: Asymmetric(id: 1))
+        Assert(Asymmetric(id: 0)).notEqual(to: Asymmetric(id: 1))
         assertFailure(
             hadMessage: "Inequality is not symmetrical for type Asymmetric."
         )
