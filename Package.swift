@@ -2,22 +2,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "CuteAssert",
+    name: "CuteAsserts",
     products: [
         .library(
-            name: "CuteAssert",
-            targets: ["CuteAssert"]
+            name: "CuteAsserts",
+            targets: ["CuteAsserts"]
         ),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "CuteAssert",
+            name: "CuteAsserts",
             dependencies: []
         ),
         .testTarget(
-            name: "CuteAssertTests",
-            dependencies: ["CuteAssert"]
+            name: "CuteAssertsTests",
+            dependencies: ["CuteAsserts"]
         ),
     ]
 )
