@@ -9,14 +9,24 @@ extension Assert where SubjectType: OptionalProtocol {
     ) throws -> SubjectType.Wrapped {
         guard !subject.isNone else {
             // We use `nil` directly here rather than asserting
-            // on `subject` because we can't prove that `SubjectType`
-            // is already an `Optional<T>` for some `T`.
+            // on `subject` because we can't prove to Swift that
+            // `SubjectType` is an `Optional<T>` for some concrete `T`.
             // Which is fair, because a consumer could implement
             // `OptionalProtocol` on their own type and really
             XCTAssertNotNil(nil, message, file: file, line: line)
             throw AssertionError.unexpectedNil
         }
         return subject.unsafelyUnwrapped
+    }
+
+    public func isNil(
+        _ message: String = "",
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard subject.isNone else {
+            return XCTFail(message, file: file, line: line)
+        }
     }
 }
 
