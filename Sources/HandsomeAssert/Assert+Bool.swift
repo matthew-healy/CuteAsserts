@@ -6,10 +6,6 @@ extension Assert where SubjectType == Bool {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        guard let subject = subject else {
-            // TODO: Add a better message
-            return XCTFail()
-        }
         XCTAssertTrue(
             subject,
             message,
@@ -22,10 +18,6 @@ extension Assert where SubjectType == Bool {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        guard let subject = subject else {
-            // TODO: Add a better message
-            return XCTFail()
-        }
         XCTAssertFalse(
             subject,
             message,

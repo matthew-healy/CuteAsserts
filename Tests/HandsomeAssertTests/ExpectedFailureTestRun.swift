@@ -18,7 +18,8 @@ class ExpectedFailureTestCase: XCTestCase {
                 """
                 __force
                 Expected a failure but none happened.
-                """
+                """,
+                file: file, line: line
             )
         }
         XCTAssertTrue(

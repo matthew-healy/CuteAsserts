@@ -15,16 +15,21 @@ final class AssertOptionSuccesses: XCTestCase {
 }
 
 final class AssertOptionFailures: ExpectedFailureTestCase {
-    func test_assertNilNotNil_fails() throws {
+    func test_assertNilNotNil_fails() {
         let nothing: Int? = nil
+        do { try Assert(nothing).notNil() }
+        catch {}
+    }
+
+    func test_assertNilNotNil_failsByThrowing() throws {
+        let nothing: Float? = nil
         try Assert(nothing).notNil()
     }
 
     func test_assertNilNotNil_includesFailureMessage() {
         let nothing: Int? = nil
-        do {
-            try Assert(nothing).notNil("unfalse")
-        } catch {
+        do { try Assert(nothing).notNil("unfalse") }
+        catch {
             // Catch & ignore the error so it doesn't throw
             // into the test scope.
         }
