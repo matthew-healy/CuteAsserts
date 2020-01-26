@@ -36,7 +36,7 @@ extension Assert where SubjectType: OptionalProtocol {
 /// protocol, with the assumption that the only implementor is
 /// `Optional`. You are not expected to implement this protocol
 /// on any of your own types.
-public protocol OptionalProtocol: ExpressibleByNilLiteral {
+public protocol OptionalProtocol {
     associatedtype Wrapped
     var unsafelyUnwrapped: Wrapped { get }
 
