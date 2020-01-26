@@ -1,5 +1,5 @@
 import XCTest
-import HandsomeAssert
+import CuteAsserts
 
 final class AssertOptionSuccesses: XCTestCase {
     func test_assertYESNotNil_passes() {

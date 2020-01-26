@@ -1,3 +1,3 @@
-# HandsomeAssert
+# CuteAsserts
 
-`HandsomeAssert` is a cute extensible wrapper around `XCTest`'s assertions.
+An extensible wrapper around `XCTest`'s assertions, engineered for cuteness.

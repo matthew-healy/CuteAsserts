@@ -1,5 +1,5 @@
 import XCTest
-import HandsomeAssert
+import CuteAsserts
 
 // MARK: Expected successes
 

@@ -1,5 +1,5 @@
 import XCTest
-import HandsomeAssert
+import CuteAsserts
 
 final class AssertBoolSuccesses: XCTestCase {
     func test_assertTrueIsTrue_passes() {
