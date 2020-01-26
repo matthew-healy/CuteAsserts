@@ -1,7 +1,7 @@
 import XCTest
 
 extension Assert where SubjectType: Equatable {
-    public func isEqual(
+    public func equal(
         to other: SubjectType,
         _ message: String = "",
         file: StaticString = #file,

@@ -5,15 +5,15 @@ import CuteAsserts
 
 final class AssertEquatableSuccesses: XCTestCase {
     func test_assertTrueAndTrueAreEqual_succeeds() {
-        Assert(true).isEqual(to: true)
+        Assert(true).equal(to: true)
     }
 
     func test_assertAbcAndAbcAreEqual_succeeds() {
-        Assert("abc").isEqual(to: "abc")
+        Assert("abc").equal(to: "abc")
     }
 
     func test_customEquatableTypesCanBeEqual() {
-        Assert(CustomType(id: 1)).isEqual(to: CustomType(id: 1))
+        Assert(CustomType(id: 1)).equal(to: CustomType(id: 1))
     }
 
     func test_assertAbcAndDefAreNotEqual_succeeds() {
@@ -25,22 +25,22 @@ final class AssertEquatableSuccesses: XCTestCase {
 
 final class AssertEquatableFailures: ExpectedFailureTestCase {
     func test_assert1And3AreEqual_fails() {
-        Assert(1).isEqual(to: 3)
+        Assert(1).equal(to: 3)
     }
 
     func test_customEquatableTypesCanBeNonEqual() {
-        Assert(CustomType(id: 0)).isEqual(to: CustomType(id: -1))
+        Assert(CustomType(id: 0)).equal(to: CustomType(id: -1))
     }
 
     func test_assertABCAndDEFAreEqual_includesFailureMessage() {
         for message in ["expected", "failure"] {
-            Assert("ABC").isEqual(to: "DEF", message)
+            Assert("ABC").equal(to: "DEF", message)
             assertFailure(hadMessage: message)
         }
     }
 
     func test_assertTypeWithAsymmetricEqualityIsEqual_failsWithNotSymmetricalError() {
-        Assert(Asymmetric(id: 1)).isEqual(to: Asymmetric(id: -1))
+        Assert(Asymmetric(id: 1)).equal(to: Asymmetric(id: -1))
         assertFailure(
             hadMessage: "Equality is not symmetrical for type Asymmetric."
         )
